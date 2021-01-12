@@ -1,4 +1,46 @@
 <!--pages/home/home.wxml-->
-<text class="title">Hello World</text>
-<button size="mini">按钮</button>
-<!-- <img src="" alt=""> -->
+
+<!-- 1.小程序的数据绑定 -->
+<!-- <view>Hello Coderwhy</view> -->
+<!-- 小程序里面是不允许进行类似DOM操作东西的 -->
+<!-- 我希望要么是Hello World，要么是Hello Coderwhy -->
+<!-- 于是我希望把这个单独抽出去，成为一个变量 -->
+<!-- 一提到变量，肯定和程序逻辑有关系的 -->
+<!-- 而页面的js文件就是放逻辑相关的东西的 -->
+<view>Hello name</view>
+<!-- 这样写是不行的 -->
+<view>Hello {{name}}</view>
+
+<view>我的年龄：{{age}}</view>
+<view class="age">我的年龄：{{age + 10}}</view>
+<!-- 胡子语法里面还可以写表达式 -->
+<!-- 胡子语法还可以绑定属性，里面写class也是可以的 -->
+
+
+<!-- 2.列表展示：wx:for-->
+<!-- 我们从服务器请求数据的话，基本上都是请求过来一坨数据，放到数组里面 -->
+<view>students[0]</view>
+<view>{{students[0]}}</view>
+<!-- 因为我们从数组里取到的是一个对象，如果直接把对象显示到这个位置的话，
+     它就会显示[object Object] -->
+<view>{{students[0].name}}</view>
+<view>{{students[1].name}}</view>
+<view>{{students[2].name}}</view>
+<view>{{students[3].name}}</view>
+<!-- 这样是可以的，但是很麻烦 -->
+
+<view wx:for="students">{{item}}</view>
+<!-- 这样写它会把students当成字符串了，它会帮你遍历字符 -->
+<!-- 这个item是小程序内部在循环的时候它帮你生成的变量 -->
+<view wx:for="{{students}}">{{item}}</view>
+<view wx:for="{{students}}">{{item.name}}-{{item.age}}</view>
+
+<!-- 3.事件监听改变data -->
+<view>当前计数:{{counter}}</view>
+<button size="mini" bindtap="handleBtnClick">+</button>
+<button size="mini" bindtap="handleSubtraction">-</button>
+<!-- 点击一次按钮counter就加1，那你必然要监听按钮的点击 -->
+<!-- 一旦发生事件都会去执行对应的函数 -->
+<!-- 要写对应的函数，我们需要有对应的函数 -->
+<!-- 注意：这里是不需要胡子语法的，直接写函数名称就可以了 -->
+<!-- 只有我们绑定数据的时候才需要胡子语法 -->
