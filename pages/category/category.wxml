@@ -1,0 +1,15 @@
+<!--pages/category/category.wxml-->
+<text>pages/category/category.wxml</text>
+<view>我是分类页面</view>
+<view>哈哈哈</view>
+<view>{{message}}</view>
+<!-- view就相当于是一个容器，里面可以放其他东西 -->
+<!-- 容器里面也可以再放容器 -->
+<view>
+  <view>a</view>
+  <view>b</view>
+  <view>c</view>
+  <view>d</view>
+</view>
+
+<button size="mini" bindtap="handleBtnClick">按钮</button>
