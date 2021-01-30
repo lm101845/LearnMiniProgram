@@ -1,66 +1,20 @@
 // pages/home/home.js
+
+const app = getApp()
+// getApp()函数可以获取App()函数产生的示例对象
+console.log(app.globalData.name);
+console.log(app.globalData.age);
+
+const name = app.globalData.name
+const age =  app.globalData.age
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleGetUserInfo(event){
+    // console.log('---------');
+    // 这个函数会传过来一个事件对象的
+    // 当用户的手指点击小程序的界面的时候，它就会产生一个对象
+    // 小程序是有把event对象传给我们的
+    // 但是这个event对象是没有我们当前用户的信息的
+    console.log(event);
   }
 })

@@ -2,3 +2,20 @@
 <text class="title">Hello World</text>
 <button size="mini">按钮</button>
 <!-- <img src="" alt=""> -->
+
+<!-- 第2种获取用户信息的方式 -->
+<button size="mini"
+        open-type="getUserInfo" 
+        bindgetuserinfo="handleGetUserInfo">
+        <!-- 这时候也不能绑定bindtap事件了，而是绑定bindgetuserinfo事件 -->
+        <!-- 此时获取到的用户相关信息是没有警告的 -->
+        <!-- 但是这种方式必须要求用户有一次点击才可以的，对用户更好，用户必须点击我们才能获取它的信息 -->
+      获取授权
+  </button>
+<!-- 当用户点击按钮的时候，我们就去获取用户的信息 -->
+<!-- 还要额外设置属性open-type才能最终获取到用户信息 -->
+<!-- open-type="getUserInfo"表明这个按钮打开的方式是用来获取用户的信息的 -->
+
+<!-- 第3种获取用户信息的方式：只能用于展示 -->
+<open-data type="userNickName"></open-data>
+<open-data type="userAvatarUrl"></open-data>
