@@ -1,0 +1,37 @@
+<!--pages/button/button.wxml-->
+<!-- <text>pages/button/button.wxml</text> -->
+
+<!-- 1.button的基本使用 -->
+<button>按钮</button>
+
+<!-- 2.size属性：mini -->
+<button size="mini">按钮</button>
+<button size="mini">按钮</button>
+<!-- 当size设置为mini时，就将display由block改成inline-block了 -->
+<!-- 就不会独占一行了 -->
+
+<!-- 3.type属性 -->
+<button size="mini" type="primary">按钮</button>
+<button size="mini" type="default">按钮</button>
+<button size="mini" type="warn">按钮</button>
+
+<!-- 4.plain：镂空效果 -->
+<button size="mini" plain>按钮</button>
+<!-- 这个按钮多了一个边框，并且没有任何背景颜色 -->
+
+<!-- 5.disabled:不可用 -->
+<button size="mini" disabled>按钮</button>
+
+<!-- 6.loading -->
+<button size="mini" loading>按钮</button>
+<button size="mini" loading="{{isLoading}}">按钮</button>
+
+<!-- 7.hover-class -->
+<button>按钮</button>
+<!--当我点下这个按钮的时候，我不希望背景是灰色的，希望背景是红色的 -->
+<!-- 小程序里面是不允许DOM操作的，所以不要指望用DOM来进行操作 -->
+<button hover-class="pressed">按钮</button>
+
+
+
+
