@@ -19,3 +19,7 @@
 <!-- 第3种获取用户信息的方式：只能用于展示 -->
 <open-data type="userNickName"></open-data>
 <open-data type="userAvatarUrl"></open-data>
+
+<view bindtap="handleViewClick">{{message}}</view>
+
+<view wx:for="{{list}}">{{item.title}}</view>
