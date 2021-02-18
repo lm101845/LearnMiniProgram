@@ -1,0 +1,29 @@
+/* pages/scroll/scroll.wxss */
+
+.container1{
+  background-color: purple;
+  white-space: nowrap;
+  /* 我们不希望它另起一行 */
+}
+
+.item1{
+  width: 100px;
+  height: 100px;
+  background-color: yellow;
+  margin: 10px;
+  display: inline-block;
+  /* view是块级元素，会独占一行 */
+}
+
+.container2{
+  background-color: orange;
+  /* 只有给它设置一个固定的高度，才能垂直滚动 */
+  height: 200px;
+  margin-top: 20px;
+}
+
+.item2{
+  height: 100px;
+  background-color: blue;
+  margin: 10px;
+}

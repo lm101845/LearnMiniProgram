@@ -1,0 +1,20 @@
+<!--pages/scroll/scroll.wxml-->
+<!-- <text>pages/scroll/scroll.wxml</text> -->
+
+<!-- 1.水平滚动:scroll-x -->
+<!-- view是块级元素，会独占一行 -->
+<scroll-view class="container1" scroll-x>
+  <view wx:for="{{10}}" class="item1">{{item}}</view>
+  <!-- 我们没有给scroll-view高度，但是它确显示高度，是因为里面的子组件view把它的高度给撑高了 -->
+</scroll-view>
+
+
+<!-- 2.垂直滚动 scroll-y-->
+<scroll-view class="container2" scroll-y>
+  <view wx:for="{{10}}" class="item2">{{item}}</view>
+</scroll-view>
+
+<!-- 3.其他事件的补充 -->
+<scroll-view class="container2" scroll-y bindscroll="handleScroll">
+  <view wx:for="{{10}}" class="item2">{{item}}</view>
+</scroll-view>

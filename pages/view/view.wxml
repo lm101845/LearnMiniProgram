@@ -1,0 +1,25 @@
+<!--pages/view/view.wxml-->
+<!-- <text>pages/view/view.wxml</text> -->
+
+<!-- 1.view的基本使用 -->
+<!-- view是个块级元素，是会独占一行的 -->
+<!-- view是一个容器，它里面可以放文字，也可以放其他组件，都是可以的 -->
+<view class="box">哈哈哈</view>
+<view>呵呵呵</view>
+<view>
+  <text>123</text>
+  <button>按钮</button>
+</view>
+
+<!-- 2.hover-class：当用户按下组件时，显示的样式 -->
+<view class="box1" hover-class="hover-view" hover-stay-time="0">box1</view>
+<!-- 我希望手指点到box1的时候，他会显示另外的颜色 -->
+<!-- 我松手的话，它会停留一段时间才会变成原来的颜色和大小 -->
+<!-- 具体停留多少时间是通过hover-stay-time来控制的，默认保留400ms -->
+<!-- 很多情况下在双引号里面写数字不行，hover-stay-time="{{0}}"要这样写-->
+<!-- 这个微信小程序估计是做了优化的，以前是必须要胡子语法的 -->
+
+<!--  -->
+<view class="box2" hover-class="box2-hover"> 
+  <view class="box1" hover-class="hover-view" hover-stay-time="0" hover-stop-propagation>box2</view>
+</view>
