@@ -1,4 +1,20 @@
+<include src="/wxml/header.wxml"/>
+
 <!--pages/home/home.wxml-->
-<text class="title">Hello World</text>
+<text id="content" selectable class="title">Hello World</text>
+<!-- id一般用的没有class多，因为id一般是不重复的 -->
 <button size="mini">按钮</button>
-<!-- <img src="" alt=""> -->
+
+<!-- 1.hidden属性 -->
+<view hidden>哈哈哈</view>
+<view bindtap="" catchtap="">哈哈哈</view>
+
+<!-- 注意：这个模版是定义在wxml里面的，如果我们想要在别的地方使用，就可以对这个模版进行引用 -->
+<import src="/wxml/template.wxml"/>
+<template is="contentItem2" data="{{btnText:'按钮',content:'哈哈哈'}}"/>
+<template is="contentItem2" data="{{btnText:'警告',content:'呵呵呵'}}"/>
+<template is="contentItem2" data="{{btnText:'点击',content:'嘿嘿嘿'}}"/>
+<template is="contentItem2" data="{{btnText:'登陆',content:'嘻嘻嘻'}}"/>
+
+<include src="/wxml/footer.wxml"/>
+

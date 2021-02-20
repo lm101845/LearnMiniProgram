@@ -1,0 +1,9 @@
+<import src="/wxml/abc.wxml"/>
+<!-- 在template中导入了abc -->
+
+<!-- 在开发中除了import导入以外，还有include方法导入 -->
+<!-- <include src="./abc.wxml"/> -->
+<template name="contentItem2">
+  <button size="mini">{{btnText}}</button>
+  <view>{{content}}</view>
+</template>

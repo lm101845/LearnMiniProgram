@@ -1,0 +1,16 @@
+  // wxs要想让它生效，必须给它一个module属性
+  // 在里面写JS代码，就相当于是WXS
+  // 但是里面不能写ES6的语法(const let等)
+  var message = 'hello world'
+  var name = 'coderwhy'
+
+  var sum =  function(num1,num2){
+    return num1 + num2
+  }
+  // module里面的东西默认都是私有的，需要使用模块化的方式将里面的东西进行导出才能够使用
+  // 这个是common.js里面模块化导出的写法
+  module.exports = {
+    message:message,
+    name:name,
+    sum:sum
+  }

@@ -1,0 +1,56 @@
+<!--pages/wxs/wxs.wxml-->
+<!-- 我希望你保留2位小数 -->
+<!-- 1.错误的写法 -->
+<!-- <view>25.666666</view> -->
+<!-- <view>{{25.666666.toFixed(2)}}</view> -->
+<!-- 不能这样写，会报错 -->
+<!-- 胡子语法虽然可以使用表达式，但是它不可以调用函数 -->
+
+<!-- <view>{{numberFoFixed(25.666666)}}</view> -->
+<!-- 在胡子语法里掉勇敢js的某个函数是可以的 -->
+<!-- 但是里面的内容没有显示 -->
+<!-- 小程序里面是没有过滤器这样的一个东西的 -->
+
+<!-- 2.wxs的定义方式 -->
+<!-- 2.1直接在wxml中进行定义(冗余，混杂) -->
+<!-- <wxs module="info">
+  // wxs要想让它生效，必须给它一个module属性
+  // 在里面写JS代码，就相当于是WXS
+  // 但是里面不能写ES6的语法(const let等)
+  var message = 'hello world'
+  var name = 'coderwhy'
+
+  var sum =  function(num1,num2){
+    return num1 + num2
+  }
+  // module里面的东西默认都是私有的，需要使用模块化的方式将里面的东西进行导出才能够使用
+  // 这个是common.js里面模块化导出的写法
+  module.exports = {
+    message:message,
+    name:name,
+    sum:sum
+  }
+</wxs> -->
+
+<!-- 但是在真实开发中我们不会把这些代码都放到一起，这样太乱了，我们会单独建立一个文件 -->
+<!-- 2.2 定义在单独的wxs文件中，再使用wxs的标签进行导入 -->
+<!-- 这里也必须要给它一个module -->
+<!-- <wxs src="/wxs/info.wxs" module="info"/> -->
+<!-- 这里是不能使用绝对路径的，必须使用相对路径 -->
+<wxs src="../../wxs/info.wxs" module="info"/>
+<view>{{info.message}}</view>
+<view>{{info.name}}</view>
+<view>{{info.sum(20,30)}}</view>
+
+<!-- 3.wxs的应用 -->
+<!-- 首先要导入 -->
+<wxs src="../../wxs/format.wxs" module="format"/>
+<view>{{price}}</view>
+<view>{{format.priceFormat(price)}}</view>
+<view>{{format.priceFormat(price,3)}}</view>
+<view>{{format.priceFormat(price,4)}}</view>
+
+<view>{{time}}</view>
+<!-- 直接显示时间戳用户是看不懂的，我们需要对这个进行格式化 -->
+<view>{{format.dateFormat(time,'yyyy-MM-dd hh:mm:ss')}}</view>
+<!-- 我这个函数抄的有点问题，它一直没有正确显示啊 -->

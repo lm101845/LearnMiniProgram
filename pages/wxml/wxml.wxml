@@ -1,0 +1,213 @@
+<!--pages/wxml/wxml.wxml-->
+<!-- 1.wxml的格式:必须有严格的闭合，单标签必须要有斜杠 -->
+<!-- 而且严格区分大小写 -->
+
+<!-- 2.Mustache语法 -->
+<!-- 里面的内容可以直接写死，也可以使用胡子语法写个变量 -->
+<view>{{message}}</view>
+<view>{{firstname}} {{lastname}}</view>
+<view>{{firstname + ' ' + lastname}}</view>
+<!-- 一个胡子语法里面你也可以写成表达式 -->
+
+<view>{{age >= 18 ? '成年人':'未成年人'}}</view>
+<!-- 三目运算符表达式也是可以的 -->
+
+<!-- 显示一下当前时间 -->
+<!-- 但是这个时间一旦显示好后就不会变化了 -->
+<view>{{nowTime}}</view>
+<!-- 我希望每秒钟改变一次，这个时候就要用到生命周期：onLoad了 -->
+
+<button size="mini" bindtap="handleSwitchColor">切换颜色</button>
+<!-- 希望点击切换颜色将下面文字改成红色，再点击一次再把颜色改回来 -->
+<!-- 注意：小程序里不允许任何DOM操作，所以这条路行不通 -->
+<!-- 所以我们可以设置一个变量，通过这个变量来控制这个class有还是没有 -->
+<view class="box {{isActive ? 'active' : ''}}">哈哈哈</view>
+
+<view>-----------------------条件判断---------------------</view>
+<!-- wx:if的使用 -->
+<button size="mini" bindtap="handleSwitchShow">切换显示</button>
+<view wx:if="{{isShow}}">哈哈哈</view>
+
+<!-- wx:elif/wx:else -->
+<button size="mini" bindtap="handleIncrement">分数递增5分</button>
+<view wx:if="{{score >= 90}}">优秀</view>
+<view wx:elif="{{score >= 80}}">良好</view>
+<view wx:elif="{{score >= 60}}">及格</view>
+<view wx:else>不及格</view>
+
+<view>------------------------------</view>
+<!-- hidden属性 -->
+<view hidden="{{true}}">我是hidden属性控制的内容</view>
+<!-- hidden将组件隐藏起来时，该组件依然是存在的，它只是隐身了(display:none)-->
+<view wx:if="{{false}}">我是wx:if属性控制的内容</view>
+<!-- wx:if将组件隐藏起来时，该组件就根本不会存在了，被杀了 -->
+
+<!-- 总结：
+        如果显示和隐藏频率非常高，就选择hidden(没有死，只是隐藏了，不会浪费性能)
+        反之则选择wx:if     
+-->
+<view>------------------------------</view>
+
+<!-- wx:if和hidden都可以控制元素的显示与隐藏 -->
+<!-- 既然它们有相同的功能，那么它们隐藏组件时有什么区别呢？ -->
+<view hidden="{{false}}">我是通过hidden控制的内容</view>
+<view wx:if="{{true}}">我是通过wx:if控制的内容</view>
+<!-- 它们显示时没有区别，它们在隐藏的时候有区别 -->
+
+<view>-----------------------列表渲染---------------------</view>
+<!-- 1.wx:for的回顾 -->
+<!-- 1.1遍历数组/字符串/数字 -->
+<view wx:for="{{['abc','nba','bbc']}}">{{item}}-{{index}}</view>
+<view wx:for="{{['abc','nba','bbc']}}">{{index}}</view>
+<view wx:for="{{['abc','nba','bbc']}}">{{item}}</view>
+<!-- 注意：数组必须写到胡子语法里面 -->
+<!-- 他会自动帮我们生成2个变量，叫做item和index-->
+
+<!-- 遍历字符串 -->
+<view wx:for="coderwhy">{{item}}{{index}}</view>
+
+<!-- 遍历数字 -->
+<view wx:for="9">{{item}}</view>
+<!-- 不能这样写，它会把9当成字符串的 -->
+<view wx:for="{{9}}">{{item}}</view>
+
+<!--2.block标签-->
+
+<!-- 笨方法1 -->
+<button wx:if="{{isShow}}">按钮</button>
+<view wx:if="{{isShow}}">呵呵呵</view>
+<text wx:if="{{isShow}}">我是内容</text>
+<!-- 这3个东西我想根据一个条件(比如说isShow)来决定这3个东西要不要渲染出来 -->
+<!-- 如果每个都加wx:if="{{isShow}}"就有点过于繁琐了 -->
+
+<!-- 还可以的方法2：外面套一个父组件-->
+<!-- 外面的组件没有被渲染，里面的子组件是不可能被渲染的 -->
+<!-- 但是这样做不好的地方在于最外面的view最主要的作用就只是把里面的东西包裹起来，本身没有意义 -->
+<!-- 多了这一个组件，会消耗性能，所以可以使用block这个标签，它的主要作用就是用于包裹 -->
+<view wx:if="{{isShow}}">
+  <button>按钮</button>
+  <view>呵呵</view>
+  <text>我是内容</text>
+</view>
+
+<view wx:for="{{3}}">
+  <button>按钮</button>
+  <view>呵呵</view>
+  <text>我是内容</text>
+</view>
+<!-- 很好的方法3：使用block标签 -->
+<block wx:if="{{isShow}}">
+  <button>按钮</button>
+  <view>呵呵</view>
+  <text>我是内容</text>
+</block>
+
+<block wx:for="{{3}}">
+  <button>按钮</button>
+  <view>呵呵</view>
+  <text>我是内容</text>
+</block>
+
+<!-- 3.item，index起名字 -->
+<!-- 有时候开发不想用item，index这2个名字 -->
+<view wx:for="{{movies}}">{{item}}</view>
+<view wx:for="{{movies}}" wx:for-item="movie" wx:for-index="i">{{movie}}-{{i}}</view>
+
+<block wx:for="{{nums}}">
+  <block wx:for="{{item}}">
+    <!-- 这个看起来就有点奇怪，外面在遍历item，这里怎么在显示item呢? -->
+    <!-- 所以我们改个名字比较好看一点 -->
+    <view>{{item}}</view>
+  </block>
+</block>
+
+<block wx:for="{{nums}}" wx:for-item='inner_nums'>
+  <block wx:for="{{inner_nums}}">
+    <!-- 这个看起来就有点奇怪，外面在遍历item，这里怎么在显示item呢? -->
+    <!-- 所以我们改个名字比较好看一点 -->
+    <view>{{item}}</view>
+  </block>
+</block>
+
+<!-- 4.key的作用 -->
+<view class="container">
+  <view wx:for="{{letters}}" wx:key="index">{{item}}</view>
+  <!-- 最终，这部分东西会被渲染成DOM树 -->
+</view>
+ 
+<view>-----------------------template---------------------</view>
+<!-- 现在这个模版已经用的比较少了 -->
+<!-- 之前的小程序是不支持自定义组件的，为了进行代码的复用，所以才使用template -->
+<!-- 模版最主要的作用是对某些代码进行复用的 -->
+<!-- 但是模版有一个条件，它必须有名字(name) -->
+<!-- 模版这个东西最主要的作用是对wxml里面相关的东西来进行一个复用 -->
+
+<button>按钮/警告/点击</button>
+<!-- button里面显示什么文字是不确定的 -->
+<view>你好小程序/Hello World</view>
+<!-- view里面显示的是内容，里面具体显示什么内容也是不确定的 -->
+
+<!-- 注意：模版中包裹的内容，在没有被使用前，是不会进行任何的渲染的 -->
+<!-- 模版在定义的时候使用双标签 -->
+<template name="contentItem">
+  <button size="mini">按钮</button>
+  <view>哈哈</view>
+</template>
+
+<template is="contentItem"/>
+<template is="contentItem"/>
+<template is="contentItem"/>
+<template is="contentItem"/>
+<template is="contentItem"/>
+<!-- 模版在使用的时候使用单标签即可 -->
+
+<!-- 我们不希望模版里面的东西写死 -->
+<!-- 下面这个要使用模版，必须在里面传入内容才可以 -->
+<!-- 传入内容是通过data属性来进行的 -->
+<!-- 使用模版方法1：自己定义，自己使用 -->
+<!-- <template name="contentItem2">
+  <button size="mini">{{btnText}}</button>
+  <view>{{content}}</view>
+</template> -->
+
+<!-- 使用模版方法2：使用别人定义好的(不劳而获) -->
+<!-- <import src="模版文件的路径"/> -->
+<import src="/wxml/template.wxml"/>
+<!-- <include src="/wxml/template.wxml"/> -->
+<!-- 绝对路径 -->
+<!-- <import src="../../wxml/template.wxml"/> -->
+<!-- 相对路径 -->
+<!-- <template is="contentItem2" data="{{key1:value1,key2:value2}}"/> -->
+
+<!-- 结论：include是不能导入模版的 -->
+<!-- 关于wxml的导入有2种方式：
+        import导入：
+            1.主要是导入template
+            2.特点：不能进行递归导入
+        Include引入
+            1.将公共的wxml中的组件抽取到一个文件中
+            2.特定：不能导入template/wxs，但是可以进行递归导入
+ -->
+<template is="contentItem2" data="{{btnText:'按钮',content:'哈哈哈'}}"/>
+<template is="contentItem2" data="{{btnText:'警告',content:'呵呵呵'}}"/>
+<template is="contentItem2" data="{{btnText:'点击',content:'嘿嘿嘿'}}"/>
+<template is="contentItem2" data="{{btnText:'登陆',content:'嘻嘻嘻'}}"/>
+
+
+<import src="/wxml/abc.wxml"/>
+<!-- import这个东西是不能对模版进行递归导入的 -->
+<!-- 即wxml中的导入了template模版，template模版中又导入了abc模版 -->
+<!-- 但是你不能在wxml中直接使用abc模版，只能自己再次导入abc模版才能使用 -->
+<template is="abc"/>
+
+<view>25.666666</view>
+<!-- <view>{{25.666666.toFixed(2)}}</view> -->
+<!-- 不能这样写，会报错 -->
+<!-- 胡子语法虽然可以使用表达式，但是它不可以调用函数 -->
+<!-- 我希望你保留2位小数 -->
+
+<view>{{numberFoFixed(25.666666)}}</view>
+<!-- 在胡子语法里掉勇敢js的某个函数是可以的 -->
+<!-- 但是里面的内容没有显示 -->
+
+<!-- 小程序里面是没有过滤器这样的一个东西的 -->

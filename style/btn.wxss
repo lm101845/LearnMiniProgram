@@ -1,0 +1,7 @@
+.btn{
+  /* 我们的按钮一般都是一样的，所以可以把样式写到这里 */
+  /* 它可能在多个文件中都能用到，所以可以将它导入到app.wxss中去 */
+  width: 240rpx;
+  height: 72rpx;
+  display: inline-block;
+}
