@@ -1,0 +1,17 @@
+<!--components/w-tab-control/w-tab-control.wxml-->
+<view class="tab-control">
+  <!-- <view class="tab-item">流行</view>
+  <view class="tab-item">新款</view>
+  <view class="tab-item">精选</view> -->
+  <!-- 一旦涉及到遍历，就要想到要block -->
+  <block wx:for="{{titles}}" wx:key="index">
+    <!-- <view class="tab-item active">{{item}}</view> -->
+    <view class="tab-item {{currentIndex === index ?'active':''}}"
+          bind:tap="handleItemClick"
+          data-index="{{index}}">
+          <!-- {{item}} -->
+          <text>{{item}}</text>
+    </view>
+  </block>
+</view>
+

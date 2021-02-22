@@ -1,0 +1,14 @@
+/* components/my-prop/my-prop.wxss */
+.title{
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.content{
+  font-size: 30rpx;
+}
+
+/* .titleClass{
+  color: red;
+  不能在这里写，这样写这3个组件都是红色，我希望每个标题的颜色都不一样
+} */

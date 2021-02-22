@@ -1,0 +1,4 @@
+<!--components/my-style/my-style.wxml-->
+<view class="title">我是style标题</view>
+<view class="content">我是syle的内容</view>
+<view id="box">不允许使用id，属性，标签选择器</view>

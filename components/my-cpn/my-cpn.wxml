@@ -1,0 +1,6 @@
+<!-- <view class="title">我是标题</view> -->
+<view class="title">{{title}}</view>
+<view class="content">我是自定义组件的内容</view>
+<cpn1/>
+
+<!-- 这里我只是封装了自定义组件，但是并没有在页面中使用它 -->

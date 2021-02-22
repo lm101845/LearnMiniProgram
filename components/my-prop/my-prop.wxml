@@ -1,0 +1,6 @@
+<!--components/my-prop/my-prop.wxml-->
+<!-- <view class="title">我是标题</view> -->
+<!-- 我不希望直接写死，我希望外界决定标题、内容如何显示 -->
+<view class="title titleclass">{{title}}</view>
+<view class="content">我是组件的内容</view>
+
