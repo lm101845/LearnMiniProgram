@@ -1,4 +1,22 @@
 <!--pages/home/home.wxml-->
 <text class="title">Hello World</text>
 <button size="mini">按钮</button>
-<!-- <img src="" alt=""> -->
+
+<!-- 1.Toast -->
+<!-- 特点：过一会儿自动消失 -->
+<button size="mini" bind:tap="handleShowToast">showToast</button>
+
+<!-- 2.Modal -->
+<button size="mini" bind:tap="handleShowModal">showModal</button>
+
+<!-- 3.loading -->
+<button size="mini" bind:tap="handleShowLoading">showLoading</button>
+<!-- 它一直存在那里，不会主动消失 -->
+<!-- 你必须要主动调用一个wx.hideLoading函数才行-->
+
+<!-- 4.actionSheet -->
+<button size="mini" bind:tap="handleShowAction">showAction</button>
+
+<!-- 5.分享按钮 -->
+<button size="mini" open-type="share">分享</button>
+
